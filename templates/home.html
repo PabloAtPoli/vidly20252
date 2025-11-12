@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Home - Vidly
+{% endblock %}
+
+{% block content %}
+  <div class="d-flex align-items-center justify-content-center" style="min-height:60vh">
+    <div class="card shadow-sm w-75">
+      <div class="card-body">
+        <h1 class="card-title mb-3">Welcome to Vidly</h1>
+        <p class="card-text text-muted">A simple movie rental catalog demo.</p>
+
+        <div class="mt-4">
+          <a href="{% url 'movies:index' %}" class="btn btn-primary me-2">Browse movies</a>
+          <!-- sample detail link - change id as needed -->
+          <a href="{% url 'movies:detail' 1 %}" class="btn btn-outline-secondary">Sample movie</a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

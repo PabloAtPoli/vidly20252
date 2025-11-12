@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  Movies - Vidly
+{% endblock %}
+
+{% block content %}
+  <h1>All movies</h1>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Genre</th>
+        <th>Release Year</th>
+        <th>Rental Unit Price</th>
+        <th>Units in Inventory</th>
+        <th>Date Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for movie in movies %}
+        <tr>
+          <td><a href="{% url 'movies:detail' movie.id %}">{{ movie.title }}</a></td>
+          <td>{{ movie.genre.name }}</td>
+          <td>{{ movie.release_year }}</td>
+          <td>{{ movie.rental_unit_price }}</td>
+          <td>{{ movie.units_in_inventory }}</td>
+          <td>{{ movie.date_created }}</td>
+        </tr>
+      {% empty %}
+        <tr>
+          <td colspan="6">No movies available.</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

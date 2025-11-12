@@ -1,0 +1,9 @@
+{
+  // "python.defaultInterpreterPath": "C:\\Users\\porti\\.virtualenvs\\vidly20252-AITg29pU\\Scripts\\python.exe",
+  // "python.defaultInterpreterPath": "C:\\Users\\ASUS\\.virtualenvs\\vidly20252-ig-vMrU2\\Scripts\\python.exe",
+  "python.terminal.activateEnvironment": true,
+  "python.terminal.activateEnvInCurrentTerminal": true,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "python-envs.defaultEnvManager": "ms-python.python:pipenv",
+  "python-envs.pythonProjects": []
+}

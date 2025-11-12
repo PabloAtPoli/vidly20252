@@ -1,0 +1,357 @@
+{% extends 'base.html' %} 
+
+{% block title %}Page Not Found - Vidly{% endblock %}
+
+{% block head %} 
+{{ block.super }}
+<style>
+  body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  }
+
+  .error-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 90vh;
+    padding: 20px;
+  }
+
+  .error-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .error-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(
+      90deg,
+      #ff6b6b,
+      #4ecdc4,
+      #45b7d1,
+      #96ceb4,
+      #feca57
+    );
+    animation: shimmer 3s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  .error-number {
+    font-size: 120px;
+    font-weight: 900;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+    margin-bottom: 20px;
+    text-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+      transform: translateY(0);
+    }
+    40% {
+      transform: translateY(-10px);
+    }
+    60% {
+      transform: translateY(-5px);
+    }
+  }
+
+  .error-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+  }
+
+  .error-subtitle {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 30px;
+    line-height: 1.6;
+  }
+
+  .movie-emoji {
+    font-size: 80px;
+    margin: 20px 0;
+    animation: rotate 4s linear infinite;
+  }
+
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 40px;
+  }
+
+  .btn-primary {
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+    color: white;
+    text-decoration: none;
+  }
+
+  .btn-secondary {
+    background: linear-gradient(45deg, #4ecdc4, #44d9ce);
+    border: none;
+    color: white;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(78, 205, 196, 0.4);
+    color: white;
+    text-decoration: none;
+  }
+
+  .suggestions {
+    margin-top: 40px;
+    padding-top: 30px;
+    border-top: 2px solid #eee;
+  }
+
+  .suggestions h4 {
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .suggestion-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .suggestion-list li {
+    background: #f8f9fa;
+    margin: 10px 0;
+    padding: 15px 20px;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+    transition: all 0.3s ease;
+  }
+
+  .suggestion-list li:hover {
+    background: #e9ecef;
+    transform: translateX(5px);
+  }
+
+  .suggestion-list li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .suggestion-list li a:hover {
+    color: #667eea;
+  }
+
+  .floating-elements {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .floating-element {
+    position: absolute;
+    opacity: 0.1;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-element:nth-child(1) {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+  }
+
+  .floating-element:nth-child(2) {
+    top: 60%;
+    right: 10%;
+    animation-delay: 2s;
+  }
+
+  .floating-element:nth-child(3) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-20px) rotate(180deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .error-card {
+      padding: 40px 20px;
+      margin: 20px;
+    }
+
+    .error-number {
+      font-size: 80px;
+    }
+
+    .error-title {
+      font-size: 24px;
+    }
+
+    .error-subtitle {
+      font-size: 16px;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      width: 100%;
+      max-width: 250px;
+      justify-content: center;
+    }
+  }
+
+  .navbar {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .navbar-brand {
+    color: white !important;
+    font-weight: bold;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="floating-elements">
+  <div class="floating-element">🎬</div>
+  <div class="floating-element">🍿</div>
+  <div class="floating-element">🎭</div>
+</div>
+
+<div class="error-container">
+  <div class="error-card">
+    <div class="error-number">404</div>
+
+    <div class="movie-emoji">🎬</div>
+
+    <h1 class="error-title">Movie Not Found!</h1>
+
+    <p class="error-subtitle">
+      Oops! It looks like this movie has gone off the air or moved to a
+      different theater. Don't worry, we have plenty of other great movies
+      waiting for you!
+    </p>
+
+    <div class="action-buttons">
+      <a href="{% url 'movies:index' %}" class="btn-primary">
+        🏠 Browse All Movies
+      </a>
+      <a href="javascript:history.back()" class="btn-secondary"> ← Go Back </a>
+    </div>
+
+    <div class="suggestions">
+      <h4>🎯 What would you like to do?</h4>
+      <ul class="suggestion-list">
+        <li>
+          <a href="{% url 'movies:index' %}">
+            📚 Browse our complete movie catalog
+          </a>
+        </li>
+        <li>
+          <a href="{% url 'movies:index' %}"> 🔥 Check out popular movies </a>
+        </li>
+        <li>
+          <a href="{% url 'movies:index' %}"> 🆕 Discover new releases </a>
+        </li>
+        <li>
+          <a href="mailto:support@vidly.com"> 📧 Contact our support team </a>
+        </li>
+      </ul>
+    </div>
+
+    <div style="margin-top: 30px; color: #888; font-size: 14px">
+      <p>
+        <strong>Error Code:</strong> 404 - Page Not Found<br />
+        <strong>Requested Path:</strong> {{ request.get_full_path }}
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}
