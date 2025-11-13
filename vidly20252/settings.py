@@ -39,7 +39,7 @@ ALLOWED_HOSTS = [
      'vidly20252-68719d6c7c6b.herokuapp.com',
      '127.0.0.1',
      'localhost',
-     'www.pablo-ortiz.com'
+     'www.pablo-ortiz.com',
      'pablo-ortiz.com'
      ]
 
