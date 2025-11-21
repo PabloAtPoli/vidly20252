@@ -9,6 +9,8 @@ django-debug-toolbar = "*"
 django-tastypie = "*"
 gunicorn = "*"
 whitenoise = "*"
+psycopg2 = "*"
+django-environ = "*"
 
 [dev-packages]
 

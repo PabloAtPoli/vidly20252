@@ -1,0 +1,25 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Virtual envs
+.env/
+venv/
+.venv/
+pipenv/
+*.egg-info/
+
+# Django
+#db.sqlite3
+/static/
+/media/
+
+# VS Code
+.vscode/
+
+# Environ variables file
+.env
+secret_key.py
+
+
+
